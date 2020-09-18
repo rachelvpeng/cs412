@@ -1,0 +1,57 @@
+Rachel Peng (U74567056)
+
+Problem Set 0: git
+
+Part 1
+	1. $ delay 2000
+	   $ show goal
+	   $ git commit
+	   $ git commit
+	2. $ delay 2000
+	   $ show goal
+	   $ git checkout -b bugfix
+	3. $ delay 2000
+	   $ show goal
+	   $ git checkout -b bugfix
+	   $ git commit -m "initial commit"
+	   $ git checkout master
+	   $ git commit -m "another commit"
+	   $ git merge bugfix
+	4. $ delay 2000
+	   $ show goal
+	   $ git checkout -b bugfix
+	   $ git commit -m "bug fixed"
+	   $ git checkout master
+	   $ git commit -m "second commit"
+	   $ git checkout bugfix
+	   $ git rebase master
+
+Part 2
+	1. $ delay 2000
+	   $ show goal
+	   $ git checkout c4
+	2. $ delay 2000
+	   $ show goal
+	   $ git checkout c4
+	   $ git checkout HEAD^
+	3. $ delay 2000
+	   $ show goal
+	   $ git branch -f master c6
+	   $ git branch -f bugfix c0
+	   $ git checkout c1
+	4. $ delay 2000
+	   $ show goal
+	   $ git reset HEAD~1
+	   $ git checkout pushed
+	   $ git revert HEAD
+
+Part 3
+	1. $ delay 2000
+	   $ show goal
+	   $ git cherry-pick c3 c4 c7
+	2. $ delay 2000
+	   $ show goal
+	   $ git rebase -i HEAD~4
+
+
+	
