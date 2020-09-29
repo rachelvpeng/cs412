@@ -3,20 +3,21 @@ const doOperation = (str) => {
 
   switch (operator) {
     case '+':
-      return left + right;
+      return () => left + right;
     case '-':
-      return left - right;
+      return () => left - right;
     case '*':
-      return left * right;
+      return () => left * right;
     case '/':
-      return left / right;
+      return () => left / right;
     case '^':
-      return left ** right;
+      return () => left ** right;
   }
 }
 
 const expression = "2^3";
 
-console.log(`${expression} = ${doOperation(expression)}`);
+
+console.log(`${expression} = ${doOperation(expression)()}`);
 
 
