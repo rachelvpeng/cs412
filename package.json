@@ -1,0 +1,21 @@
+{
+  "name": "cs412",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ps1.unitTests.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rachelvpeng/cs412.git"
+  },
+  "author": "Rachel Peng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rachelvpeng/cs412/issues"
+  },
+  "homepage": "https://github.com/rachelvpeng/cs412#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.3"
+  }
+}

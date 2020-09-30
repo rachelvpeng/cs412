@@ -1,7 +1,6 @@
 const executeDecorator = (str, decorator) => decorator(str);
 
 const expression1 = executeDecorator('supercalifragilisticexpialidocious', (str) => str.replace(/c/g, ",c").split(","));
-console.log(`expression1: ${expression1}`);
 
 const expression2 = executeDecorator('supercalifragilisticexpialidocious', (str) => {
   let modifiedString = str.replace(/a/g, "A");
@@ -16,3 +15,5 @@ const expression2 = executeDecorator('supercalifragilisticexpialidocious', (str)
   return strObject
 })
 console.table({expression2});
+
+module.exports = {executeDecorator, expression1, expression2};

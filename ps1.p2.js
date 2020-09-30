@@ -15,9 +15,4 @@ const doOperation = (str) => {
   }
 }
 
-const expression = "2^3";
-
-
-console.log(`${expression} = ${doOperation(expression)()}`);
-
-
+module.exports = {doOperation};
