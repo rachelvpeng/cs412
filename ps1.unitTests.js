@@ -6,11 +6,15 @@ const {describe, it} = require('mocha');
 const {expect} = require('chai');
 
 describe('unit tests for p1', () => {
+  let reversedString = reverseAlphabeticalOrder("supercalifragilisticexpialidocious");
+
   it('should return the given string in reverse alphabetical order', () => {
-    let reversedString = reverseAlphabeticalOrder("supercalifragilisticexpialidocious");
     expect(reversedString).to.equal('xuutsssrrppoollliiiiiiigfeedcccaaa');
-    expect(reversedString).to.be.a('string');
   });
+
+  it('should have a return type of string', () => {
+    expect(reversedString).to.be.a('string');
+  })
 });
 
 describe('unit tests for p2', () => {
