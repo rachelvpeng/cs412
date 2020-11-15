@@ -15,12 +15,9 @@ const getPokemonAbility = (pokemonName) => {
     };
 
     request(options, function (error, response) {
-      if (error) return reject(error);
-      try {
-        resolve(JSON.parse(response.body).abilities[0].ability.name);
-      } catch (e) {
-        reject(e)
-      }
+      if (error) reject(error);
+
+      resolve(JSON.parse(response.body).abilities[0].ability.name);
     });
   });
 }
