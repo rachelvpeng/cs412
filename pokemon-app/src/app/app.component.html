@@ -1,0 +1,11 @@
+<div>
+  <button (click)="loadPokemons()" *ngIf="!pokemonsLoaded"> Get some pokemons! </button>
+  <div *ngIf="pokemonsLoaded">
+    <h1> Here's a list of pokemons in our database! </h1>
+    <ul *ngFor="let pokemon of pokemons">
+      <li (click)="setSelectedPokemon(pokemon)">{{pokemon.name}}</li>
+        <p *ngIf="pokemon === selectedPokemon"> Ability: {{pokemon.ability}}</p>
+    </ul>
+  </div>
+  </div>  
+  
