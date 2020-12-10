@@ -28,30 +28,14 @@ const getPokemonAbility = (pokemonName) => {
   });
 }
 
-router.options("/", function (req, res, next) {
-  res.writeHead(200, {
-  "Content-Type": "application/x-www-form-urlencoded",
-  "Access-Control-Allow-Headers": "*",
-  "Access-Control-Allow-Origin": "*",
-  });
- res.end();
- });
-
-router.route('/')
-  .get((req, res, next) => {
-    res.render('form');
-  })
-  .post((req, res, next) => {
-    let pokemonName = req.body.pokemon;
-
+const getPokemon = (pokemonName) => {
+  return new Promise(function (resolve, reject) {
     client.exists(pokemonName, (err, match) => {
-      if (err) {
-        throw new Error(err);
-      }
+      if (err) reject(err);
 
       if (match) {
         client.get(pokemonName, (e, pokemonAbility) => {
-          if (e) throw new Error(e);
+          if (e) reject(e);
 
           let response = {
             pokemonName: pokemonName,
@@ -59,21 +43,21 @@ router.route('/')
             fromCache: true
           }
 
-          res.json(response);
+          resolve(response);
         })
       } else {
         getPokemonAbility(pokemonName)
           .then(pokemonAbility => {
             client.set(pokemonName, pokemonAbility, (e, r) => {
-              if (e) throw new Error(e);
-              
+              if (e) reject(e);
+
               let response = {
                 pokemonName: pokemonName,
                 pokemonAbility: pokemonAbility,
                 fromCache: false
               }
 
-              res.json(response);
+              resolve(response);
             })
 
             client.expire(pokemonName, 15);
@@ -81,5 +65,33 @@ router.route('/')
       }
     })
   })
+}
+
+router.options("/", function (req, res, next) {
+  res.writeHead(200, {
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Access-Control-Allow-Headers": "*",
+    "Access-Control-Allow-Origin": "*",
+  });
+  res.end();
+});
+
+router.route('/')
+  .get((req, res, next) => {
+    res.render('form');
+  })
+  .post(async (req, res, next) => {
+    let pokemonNames = req.body.pokemons;
+    let pokemons = [];
+
+    for (let i = 0; i < pokemonNames.length; i++) {
+      getPokemon(pokemonNames[i])
+        .then(response => {
+          pokemons.push(response);
+
+          if (i === pokemonNames.length - 1) res.json(pokemons);
+        });
+    }
+  });
 
 module.exports = router;

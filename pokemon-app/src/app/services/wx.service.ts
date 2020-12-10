@@ -10,8 +10,8 @@ export class WxService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemon(pokemonName: string): Observable<any> {
-    return this.http.post(wxConfig.baseURL, {pokemon: pokemonName},
+  getPokemon(pokemonNames: string[]): Observable<any> {
+    return this.http.post(wxConfig.baseURL, {pokemons: pokemonNames},
       {observe: 'body', responseType: 'json'});
   }
 }

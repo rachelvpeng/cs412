@@ -12,6 +12,9 @@ export class AppComponent implements OnInit {
   pokemonsLoaded: boolean = false;
   pokemons: Pokemon[] = [];
   selectedPokemon!: Pokemon;
+  pokemonName1: any;
+  pokemonName2: any;
+  pokemonName3: any;
 
   constructor(private wxService: WxService) {}
 
@@ -20,13 +23,15 @@ export class AppComponent implements OnInit {
   }
 
   loadPokemons() : void {
-    this.wxService.getPokemon("butterfree").subscribe(
-      (response: Pokemon) => { 
+    let pokemonNames: string[] = [];
+    pokemonNames.push(this.pokemonName1);
+    pokemonNames.push(this.pokemonName2);
+    pokemonNames.push(this.pokemonName3);
+
+    this.wxService.getPokemon(pokemonNames).subscribe(
+      (response: Pokemon[]) => { 
         console.log(response);
-        this.pokemons.push(response);   // hard coded duplication to provide a list for *ngFor implementation
-        this.pokemons.push(response);
-        this.pokemons.push(response);
-        console.log(this.pokemons);
+        this.pokemons = response; 
         this.pokemonsLoaded = true;
       }
     )
