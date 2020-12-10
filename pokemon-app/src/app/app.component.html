@@ -1,6 +1,6 @@
 <div>
   <div *ngIf="!pokemonsLoaded">
-    <h2>Please enter 3 Pokemon names</h2><br>
+    <h2>Please enter 3 Pokemon names</h2>
     <label>Pokemon 1:</label>
     <input type="text" [(ngModel)]="pokemonName1"><br>
     <label>Pokemon 2:</label>
@@ -9,12 +9,5 @@
     <input type="text" [(ngModel)]="pokemonName3"><br>
     <button (click)="loadPokemons()"> Get some pokemons! </button>
   </div>
-  <div *ngIf="pokemonsLoaded">
-    <h2> Here are your Pokemons' abilities! </h2>
-    <ul *ngFor="let pokemon of pokemons">
-      <li (click)="setSelectedPokemon(pokemon)">{{pokemon.pokemonName}}</li>
-      <p *ngIf="pokemon === selectedPokemon"> Ability: {{pokemon.pokemonAbility}}</p>
-      <p *ngIf="pokemon === selectedPokemon"> From Cache: {{pokemon.fromCache}}</p>
-    </ul>
-  </div>
+  <pokemon-detail *ngIf="pokemonsLoaded" [pokemons]="pokemons"></pokemon-detail>
 </div>

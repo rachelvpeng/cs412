@@ -6,8 +6,8 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class WxService {
 
+export class WxService {
   constructor(private http: HttpClient) { }
 
   getPokemon(pokemonNames: string[]): Observable<any> {

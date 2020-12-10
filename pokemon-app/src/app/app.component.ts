@@ -11,7 +11,6 @@ import { Pokemon } from './data/pokemon';
 export class AppComponent implements OnInit {
   pokemonsLoaded: boolean = false;
   pokemons: Pokemon[] = [];
-  selectedPokemon!: Pokemon;
   pokemonName1: any;
   pokemonName2: any;
   pokemonName3: any;
@@ -23,21 +22,13 @@ export class AppComponent implements OnInit {
   }
 
   loadPokemons() : void {
-    let pokemonNames: string[] = [];
-    pokemonNames.push(this.pokemonName1);
-    pokemonNames.push(this.pokemonName2);
-    pokemonNames.push(this.pokemonName3);
+    let pokemonNames: string[] = [this.pokemonName1, this.pokemonName2, this.pokemonName3];
 
     this.wxService.getPokemon(pokemonNames).subscribe(
       (response: Pokemon[]) => { 
-        console.log(response);
         this.pokemons = response; 
         this.pokemonsLoaded = true;
       }
     )
-  }
-
-  setSelectedPokemon(pokemon: Pokemon) : void {
-    this.selectedPokemon = pokemon;
   }
 }

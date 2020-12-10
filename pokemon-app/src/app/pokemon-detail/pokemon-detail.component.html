@@ -1,0 +1,8 @@
+<div>
+  <h2> Here are your Pokemons' abilities! </h2>
+  <ul *ngFor="let pokemon of pokemons">
+    <li (click)="setSelectedPokemon(pokemon)"> {{pokemon.pokemonName}} </li>
+    <p *ngIf="pokemon === selectedPokemon"> Ability: {{pokemon.pokemonAbility}} </p>
+    <p *ngIf="pokemon === selectedPokemon"> From Cache: {{pokemon.fromCache} </p>
+  </ul>
+</div>
