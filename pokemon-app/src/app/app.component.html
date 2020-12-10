@@ -1,10 +1,13 @@
 <div>
-  <button (click)="loadPokemons()" *ngIf="!pokemonsLoaded"> Get some pokemons! </button>
+  <div *ngIf="!pokemonsLoaded">
+    <button (click)="loadPokemons()"> Get some pokemons! </button>
+  </div>
   <div *ngIf="pokemonsLoaded">
-    <h1> Here's a list of pokemons in our database! </h1>
+    <h2> Here are your submitted Pokemon's abilities! </h2>
     <ul *ngFor="let pokemon of pokemons">
-      <li (click)="setSelectedPokemon(pokemon)">{{pokemon.name}}</li>
-        <p *ngIf="pokemon === selectedPokemon"> Ability: {{pokemon.ability}}</p>
+      <li (click)="setSelectedPokemon(pokemon)">{{pokemon.pokemonName}}</li>
+        <p *ngIf="pokemon === selectedPokemon"> Ability: {{pokemon.pokemonAbility}}</p>
+        <p *ngIf="pokemon === selectedPokemon"> From Cache: {{pokemon.fromCache}}</p>
     </ul>
   </div>
   </div>  

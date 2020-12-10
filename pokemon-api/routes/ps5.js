@@ -17,10 +17,7 @@ const getPokemonAbility = (pokemonName) => {
   return new Promise(function (resolve, reject) {
     const options = {
       'method': 'GET',
-      'url': OPTIONS.getPokemonAbilityOptions.url + pokemonName,
-      'headers': {
-        'cookie': OPTIONS.getPokemonAbilityOptions.headers.Cookie
-      }
+      'url': OPTIONS.getPokemonAbilityOptions.url + pokemonName
     };
 
     request(options, function (error, response) {
@@ -30,6 +27,15 @@ const getPokemonAbility = (pokemonName) => {
     });
   });
 }
+
+router.options("/", function (req, res, next) {
+  res.writeHead(200, {
+  "Content-Type": "application/x-www-form-urlencoded",
+  "Access-Control-Allow-Headers": "*",
+  "Access-Control-Allow-Origin": "*",
+  });
+ res.end();
+ });
 
 router.route('/')
   .get((req, res, next) => {
@@ -48,11 +54,12 @@ router.route('/')
           if (e) throw new Error(e);
 
           let response = {
+            pokemonName: pokemonName,
             pokemonAbility: pokemonAbility,
             fromCache: true
           }
 
-          res.send(response);
+          res.json(response);
         })
       } else {
         getPokemonAbility(pokemonName)
@@ -61,11 +68,12 @@ router.route('/')
               if (e) throw new Error(e);
               
               let response = {
+                pokemonName: pokemonName,
                 pokemonAbility: pokemonAbility,
                 fromCache: false
               }
 
-              res.send(response);
+              res.json(response);
             })
 
             client.expire(pokemonName, 15);

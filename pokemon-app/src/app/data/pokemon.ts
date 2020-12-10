@@ -1,4 +1,5 @@
 export class Pokemon {
-  name!: string;
-  ability!: string;
+  pokemonName!: string;
+  pokemonAbility!: string;
+  fromCache!: boolean;
 }

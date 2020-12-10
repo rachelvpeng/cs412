@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { pokemons } from './data/mockData';
+import {WxService } from './services/wx.service';
 import { Pokemon } from './data/pokemon';
 
 @Component({
@@ -10,16 +10,26 @@ import { Pokemon } from './data/pokemon';
 
 export class AppComponent implements OnInit {
   pokemonsLoaded: boolean = false;
-  pokemons!: Pokemon[];
+  pokemons: Pokemon[] = [];
   selectedPokemon!: Pokemon;
+
+  constructor(private wxService: WxService) {}
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
 
   loadPokemons() : void {
-    this.pokemonsLoaded = true;
-    this.pokemons = pokemons;
+    this.wxService.getPokemon("butterfree").subscribe(
+      (response: Pokemon) => { 
+        console.log(response);
+        this.pokemons.push(response);   // hard coded duplication to provide a list for *ngFor implementation
+        this.pokemons.push(response);
+        this.pokemons.push(response);
+        console.log(this.pokemons);
+        this.pokemonsLoaded = true;
+      }
+    )
   }
 
   setSelectedPokemon(pokemon: Pokemon) : void {
